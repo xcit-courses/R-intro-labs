@@ -1,0 +1,140 @@
+---
+title: "Data frames"
+editor: visual
+---
+
+## Main operations on data.frames
+
+0.  Inspect the size and type of a data.frame
+1.  See the content of a data.frame
+2.  Select a column of a data.frame
+3.  Filter rows of a data.frame
+4.  Modify or create new columns
+5.  Save a data.frame
+
+## Example dataset
+
+In all the examples below I will use the `Employee satisfaction and Salary (ESS)` dataset, downloaded from [Zenodo](https://zenodo.org/records/13935313).
+
+```{r}
+library(tidyverse)
+ESS <- read_csv('datasets/ESS/HR_comma_sep.csv')
+knitr::kable(ESS)
+```
+
+## 0. Inspect
+
+A first thing that one should always do with a dataset is to get a sense of how big or small that data is.
+
+One can ask onself for instance, does this data table have the expected number of rows and columns.
+
+How can you assess the "size" of a data.frame?
+
+```{r}
+# there's a function you can use to see the structure of the data; use it here to inspect the ESS data.frame
+
+```
+
+## 1. See the content of a data.frame
+
+There are multiple ways to "get a look" at the content of a data.frame; here are few:
+
+-   View(df)
+-   head(df)
+-   tail(df)
+-   print(df)
+
+Try them out!
+
+Do you understand what they are doing?
+
+When would you use each of them?
+
+```{r}
+# TODO: try out different ways to see the values in the ESS data.frame
+
+```
+
+## 2. Select columns
+
+A key operation on tables is to `select` specific columns. For example, perhaps your data.frame has many more columns than you need and you would like to save a version of your data that only contains the columns you want.
+
+Or perhaps you to select a particular column (e.g., `satisifaction_level`) to plot a histogram of that variable.
+
+In R there are several ways you can select one or multiple columns. In base R you can select columns using square brakets \[\]
+
+-   by name (or vector of names)
+-   by index/position (or vector of indecis)
+
+```{r}
+#| eval: false
+
+
+# select columns by name 
+ESS["satisfaction_level"]
+ESS[c("satisfaction_level", "salary")]
+
+# select columns by position
+ESS[, 1]
+ESS[, c(1,10)]
+```
+
+You can also select individual columns using the \$ symbol:
+
+```{r}
+#| eval: false
+
+ESS$satisfaction_level
+```
+
+Which of these methods is better?
+
+> Note that tidyverse offers additional ways of selecting columns.
+
+## 3. Select rows (aka "filtering")
+
+It is often useful for specific analysis to keep only certain cases. For example, there might be a column called age and we are only interested in peole aged 50 and older. Or there is a columns called time_spend_company and we are only interested in those people who have been at a company for more than 5 years.
+
+Again R offers various ways to filter rows:
+
+-   by row numbers
+-   by condition
+
+> note the comma inside the \[\]!
+
+```{r  eval=FALSE, include=TRUE, echo=TRUE}
+
+ESS[1:10, ]
+
+ESS[ESS$salary == "high", ]
+
+```
+
+## 4. Modify or create new columns
+
+The next common operation we'll see is how to modify or create new columns in a data.frame.
+
+For example, perhaps you have a column called `satisfaction_level` that is expressed in Euros and you want to create a new column called `satisfaction_level_standardized` that subtracts the mean of salary and divides by its standard deviation.
+
+Or you have columns called score_a and score_b and you want to add them up in a column called score_total.
+
+```{r  eval=FALSE, include=TRUE, echo=TRUE}
+
+
+ESS$satisfaction_level_standardized <- (ESS$satisfaction_level - mean(ESS$satisfaction_level))/sd(ESS$satisfaction_level)
+
+```
+
+## 5. Save a data.frame
+
+Finally, at some point you may want to export your data as a data file that may want to share with others.
+
+As with importing, depending on the data file format you want you will need to use different methods.
+
+A common file format for data is "CSV". You can export your data using `write.csv()` for example.
+
+```{r  eval=FALSE, include=TRUE, echo=TRUE}
+
+write.csv()
+
+```

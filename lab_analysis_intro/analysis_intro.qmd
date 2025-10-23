@@ -1,0 +1,72 @@
+---
+title: "Introduction to data analysis in R"
+format: html
+---
+
+
+
+
+## Load data
+
+```{r}
+library(readr)
+ESS <- read_csv("data/ESS/HR_comma_sep.csv")
+```
+
+
+
+
+## Calculate correlation between Murder and Rape
+
+```{r}
+res <- cor.test(ESS$satisfaction_level, ESS$last_evaluation)
+res
+
+```
+
+## Reporting results
+
+```{r}
+# install.packages("report")
+library(report)
+report(res)
+```
+
+## Plotting
+
+```{r}
+plot(ESS$last_evaluation, ESS$satisfaction_level)
+
+
+```
+
+## Linear regressions
+
+```{r}
+m1 <- lm(satisfaction_level~last_evaluation, data=ESS)
+m1
+```
+
+```{r}
+summary(m1)
+```
+
+## Using the report package
+
+```{r echo=TRUE}
+report(m1)
+```
+
+## Plotting
+
+```{r echo=TRUE}
+
+plot(ESS$last_evaluation, ESS$satisfaction_level)
+abline(m1, col = "red")
+
+```
+
+```{r}
+# plot(m1)
+```
+

@@ -1,0 +1,196 @@
+{
+  "access": {
+    "embargo": {
+      "active": false,
+      "reason": null
+    },
+    "files": "public",
+    "record": "public",
+    "status": "open"
+  },
+  "created": "2024-10-15T14:13:00.843614+00:00",
+  "custom_fields": {},
+  "deletion_status": {
+    "is_deleted": false,
+    "status": "P"
+  },
+  "files": {
+    "count": 2,
+    "enabled": true,
+    "entries": {
+      "HR_comma_sep.csv": {
+        "access": {
+          "hidden": false
+        },
+        "checksum": "md5:3b580928828bbdc7e894d2b1bb121a9b",
+        "ext": "csv",
+        "id": "8b178aba-32bc-4319-be3b-c939a7fb3735",
+        "key": "HR_comma_sep.csv",
+        "links": {
+          "content": "https://zenodo.org/api/records/13935313/files/HR_comma_sep.csv/content",
+          "self": "https://zenodo.org/api/records/13935313/files/HR_comma_sep.csv"
+        },
+        "metadata": {},
+        "mimetype": "text/csv",
+        "size": 566778,
+        "storage_class": "L"
+      },
+      "WA_Fn-UseC_-HR-Employee-Attrition.csv": {
+        "access": {
+          "hidden": false
+        },
+        "checksum": "md5:ad8207459e5732574372cf8ff619883f",
+        "ext": "csv",
+        "id": "476cfca8-072d-493c-af11-163a69389615",
+        "key": "WA_Fn-UseC_-HR-Employee-Attrition.csv",
+        "links": {
+          "content": "https://zenodo.org/api/records/13935313/files/WA_Fn-UseC_-HR-Employee-Attrition.csv/content",
+          "self": "https://zenodo.org/api/records/13935313/files/WA_Fn-UseC_-HR-Employee-Attrition.csv"
+        },
+        "metadata": {},
+        "mimetype": "text/csv",
+        "size": 227977,
+        "storage_class": "L"
+      }
+    },
+    "order": [],
+    "total_bytes": 794755
+  },
+  "id": "13935313",
+  "is_draft": false,
+  "is_published": true,
+  "links": {
+    "access": "https://zenodo.org/api/records/13935313/access",
+    "access_grants": "https://zenodo.org/api/records/13935313/access/grants",
+    "access_links": "https://zenodo.org/api/records/13935313/access/links",
+    "access_request": "https://zenodo.org/api/records/13935313/access/request",
+    "access_users": "https://zenodo.org/api/records/13935313/access/users",
+    "archive": "https://zenodo.org/api/records/13935313/files-archive",
+    "archive_media": "https://zenodo.org/api/records/13935313/media-files-archive",
+    "communities": "https://zenodo.org/api/records/13935313/communities",
+    "communities-suggestions": "https://zenodo.org/api/records/13935313/communities-suggestions",
+    "doi": "https://doi.org/10.5281/zenodo.13935313",
+    "draft": "https://zenodo.org/api/records/13935313/draft",
+    "files": "https://zenodo.org/api/records/13935313/files",
+    "latest": "https://zenodo.org/api/records/13935313/versions/latest",
+    "latest_html": "https://zenodo.org/records/13935313/latest",
+    "media_files": "https://zenodo.org/api/records/13935313/media-files",
+    "parent": "https://zenodo.org/api/records/13935312",
+    "parent_doi": "https://doi.org/10.5281/zenodo.13935312",
+    "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.13935312",
+    "parent_html": "https://zenodo.org/records/13935312",
+    "preview_html": "https://zenodo.org/records/13935313?preview=1",
+    "request_deletion": "https://zenodo.org/api/records/13935313/request-deletion",
+    "requests": "https://zenodo.org/api/records/13935313/requests",
+    "reserve_doi": "https://zenodo.org/api/records/13935313/draft/pids/doi",
+    "self": "https://zenodo.org/api/records/13935313",
+    "self_doi": "https://doi.org/10.5281/zenodo.13935313",
+    "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.13935313",
+    "self_html": "https://zenodo.org/records/13935313",
+    "self_iiif_manifest": "https://zenodo.org/api/iiif/record:13935313/manifest",
+    "self_iiif_sequence": "https://zenodo.org/api/iiif/record:13935313/sequence/default",
+    "versions": "https://zenodo.org/api/records/13935313/versions"
+  },
+  "media_files": {
+    "count": 0,
+    "enabled": false,
+    "entries": {},
+    "order": [],
+    "total_bytes": 0
+  },
+  "metadata": {
+    "creators": [
+      {
+        "person_or_org": {
+          "family_name": "Zhai Yue",
+          "name": "Zhai Yue",
+          "type": "personal"
+        }
+      }
+    ],
+    "description": "<p>Employee Satisfaction and Salary Dataset: contains data on the relationship between employee satisfaction and salary levels, designed to support research using deep learning models. The dataset includes various features such as salary, job satisfaction scores, and other related variables, making it suitable for complex data analysis and predictive modeling. It can be used to explore the impact of salary levels on employee satisfaction and to validate and optimize deep learning algorithms in supercomputing environments.</p>",
+    "publication_date": "2024-10-15",
+    "publisher": "Zenodo",
+    "resource_type": {
+      "id": "dataset",
+      "title": {
+        "de": "Datensatz",
+        "en": "Dataset"
+      }
+    },
+    "rights": [
+      {
+        "description": {
+          "en": "The Creative Commons Attribution license allows re-distribution and re-use of a licensed work on the condition that the creator is appropriately credited."
+        },
+        "icon": "cc-by-icon",
+        "id": "cc-by-4.0",
+        "props": {
+          "scheme": "spdx",
+          "url": "https://creativecommons.org/licenses/by/4.0/legalcode"
+        },
+        "title": {
+          "en": "Creative Commons Attribution 4.0 International"
+        }
+      }
+    ],
+    "title": "Employee Satisfaction and Salary Dataset"
+  },
+  "parent": {
+    "access": {
+      "owned_by": {
+        "user": "1203560"
+      },
+      "settings": {
+        "accept_conditions_text": null,
+        "allow_guest_requests": false,
+        "allow_user_requests": false,
+        "secret_link_expiration": 0
+      }
+    },
+    "communities": {},
+    "id": "13935312",
+    "pids": {
+      "doi": {
+        "client": "datacite",
+        "identifier": "10.5281/zenodo.13935312",
+        "provider": "datacite"
+      }
+    }
+  },
+  "pids": {
+    "doi": {
+      "client": "datacite",
+      "identifier": "10.5281/zenodo.13935313",
+      "provider": "datacite"
+    },
+    "oai": {
+      "identifier": "oai:zenodo.org:13935313",
+      "provider": "oai"
+    }
+  },
+  "revision_id": 4,
+  "stats": {
+    "all_versions": {
+      "data_volume": 637064668.0,
+      "downloads": 1234,
+      "unique_downloads": 781,
+      "unique_views": 741,
+      "views": 882
+    },
+    "this_version": {
+      "data_volume": 637064668.0,
+      "downloads": 1234,
+      "unique_downloads": 781,
+      "unique_views": 741,
+      "views": 882
+    }
+  },
+  "status": "published",
+  "swh": {},
+  "updated": "2024-10-15T14:13:01.074535+00:00",
+  "versions": {
+    "index": 1,
+    "is_latest": true
+  }
+}

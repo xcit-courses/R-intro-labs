@@ -1,0 +1,190 @@
+---
+title: "Import data lab"
+author: "Pedro Cardoso-Leite"
+---
+
+## About
+
+This notebooks offers exercises on how to import data from various file formats into R.
+More specifically, we look at how to import data from
+
+ - Excel
+ - SPSS
+ - CSV
+
+Data files are located in the `datasets/` folder; most of these files were downloaded from the Internet.
+
+
+## Excel files
+
+I've downloaded a dataset from the OSF website: [https://osf.io/3tx8f](https://osf.io/3tx8f). 
+
+
+
+The file I've downloaded is called `DescriptionExperience_1606509898936.xlsx` and is part of a dataset from an actual study called *"Outcome uncertainty influences probability perception and risk attitudes".*
+
+
+
+To read this type of data we need to load a dedicated package. If you don't have this package already installed, you need to install it first before you can use it.
+
+
+```{r}
+# TODO: import DescriptionExperience_1606509898936.xlsx
+
+```
+
+
+Once you've imported the data into R, it exists in R as a `data.frame`. 
+
+To see the content of the data.frame, try the following:
+
+```{r}
+#| eval: false
+View(my_data)
+
+```
+
+
+Can you answer the following question about this dataset:
+> How big is this table?
+
+
+
+
+
+## SPSS files
+
+This second dataset was also downloaded from the Internet.
+This time from [Figshare](https://figshare.com) which is another platform where researchers can share resources. Here's the link to the data: https://figshare.com/articles/dataset/data_sav/14784588
+
+
+The file we've downloaded is called `Data-r.sav`. To read this type of data we need to load a dedicated package.
+
+```{r}
+# TODO: import "datasets/Data-r.sav"
+
+```
+
+
+
+
+
+
+## CSV files: example 1
+
+CSV is a common, open data format. It's stands for comma separated values. CSV and related files can easily be opened by most, if not all programming languages and software (contrary to SPSS and Excel which are proprietary formats).
+
+When the CSV file is properly formatted it's easy to read its content.
+
+```{r}
+# TODO: import file datasets/booksales.csv"
+
+```
+
+
+
+## CSV file: example 2
+
+However, sometimes it can be a bit more tricky to open up CSV files.
+
+Let's try a few examples.
+
+Here's a dataset I've downloaded from https://openpsychometrics.org/_rawdata/
+
+It's called "Answers to Cattell's 16 Personality Factors Test with items from the IPIP."
+The csv file is `./datasets/16PF/data.csv`.
+
+```{r}
+# TODO: import "./datasets/16PF/data.csv"
+
+```
+
+> Did it work? What's the issue?
+
+
+
+
+## HTML file
+
+Sometimes data is available in web pages (html). For example, the information about the variable names in 16PF mean is stored in the html file called `codebook.html`.
+
+
+Can you extract the data from that html page?
+
+```{r}
+# TODO: import "./datasets/16PF/codebook.html"
+library(rvest)
+html <- read_html("datasets/16PF/codebook.html")
+cattell_16PF_codebook <- html_table(html_element(html, "table"))
+
+# display better looking table
+knitr::kable(head(cattell_16PF_codebook, 10))
+
+```
+
+As you can see, extracting data from non-conventional data files requires extra work and custom solutions. To be avoided.
+
+
+
+
+## CSV from an URL
+
+If the data is on the Internet, you can also directly download and load it with your code. That is, you don't need to first manually download it and then load it with your code, you could do both at once. (If you download the data manually, you are sure however that your code will work in the future; the data may disappear from the Internet in the future). 
+
+
+
+Here's an example: instead of providing the path to a file on your computer,
+you can provide a URL to the dataset:
+
+
+```{r}
+# TODO: import csv file from: 'https://www.stats.govt.nz/assets/Uploads/Annual-enterprise-survey/Annual-enterprise-survey-2020-financial-year-provisional/Download-data/annual-enterprise-survey-2020-financial-year-provisional-csv.csv'
+
+```
+
+
+
+
+## A few more exercises
+
+Open `EX 14_5.sav` using code
+
+```{r}
+
+```
+
+
+
+Open `sampledatahockey.xlsx`
+
+```{r}
+
+```
+
+
+
+
+Open `faithful.csv` using code
+
+```{r}
+
+```
+
+
+
+
+
+Open `anscombe.csv` using code.
+
+```{r}
+
+```
+
+
+Open all the files in the `sales_data/` folder using code.
+
+
+```{r}
+
+```
+

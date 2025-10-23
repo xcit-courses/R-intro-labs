@@ -1,0 +1,274 @@
+---
+title: "The Monty Hall problem"
+author: "Pedro Cardoso-Leite"
+---
+
+## Switch or Stay?
+
+Imagine the following game. There are three closed doors. Behind one of the doors is sports car; behind each of the remaining two is a goat.
+
+In this game you get to choose a door (at random) and you win whatever is behind that closed door (i.e., a car or a goat).
+
+Once you've chosen a door, the game host opens one of the two doors you did not pick and which the game host knows for certain hides a goat (i.e., the game host never opens the door that hides the car).
+
+The game host then offers you a second choice: do you keep the door you've already chosen or do you want to switch to the other closed door?
+
+<!--(If you want to try it for yourself, you can play one round of this game at <https://www.stayorswitch.com/>) -->
+
+Before continuing, add your response here:
+
+> I would switch/stay, because ...
+
+## Simulations
+
+Simulations are a great way to force you to think about a probabilistic model (as you have to program the model) and to generate "data" to test your ideas/intuitions.
+
+Here you will write code to simulate many rounds of the game described above in order to determine which of the two strategies, "stay" or "switch", is best (i.e., has on average the greatest chance to lead to winning the car).
+
+### Step 1: Implementing 1 round of the game
+
+#### Step 1.a: pick where to hide car
+
+We start by first setting up all the pieces you need to simulate one round of the game.
+
+There are 3 doors; let's label them. Create a variable called `doors` that has the values "A", "B" and "C".
+
+```{r}
+# TODO: Create a variable called doors that has the values "A", "B" and "C".
+
+# --- your code ---
+# Write your code here!
+print("hello")
+
+```
+
+Imagine now that you are the game host. Randomly pick one of the doors behind which to hide the car; that door will be called the `winning_door`.
+
+```{r}
+
+# TODO: create a variable called `winning_door` and use the `sample()` function to pick one of the `doors` at random.
+# TODO: run the code below multiple times to quickly check if you are indeed choosing doors at random.
+
+# --- your code ---
+
+
+
+# --- don't edit the code below! ---
+# the code below prints what the winning door is.
+print(paste0("Psst! The car is hidden behind door: ", winning_door))
+
+```
+
+#### Step 1.b: let the player choose one door
+
+Now it's the turn to implement a player.
+
+```{r}
+# TODO: create a variable called `player_choice` and use the `sample()` function to pick one of the `doors` at random.
+# TODO: run the code below multiple times to quickly check if you are indeed choosing doors at random.
+
+# --- your code ---
+
+
+
+
+# the code below prints the name of the door chosen by the player.
+print(paste0("The player choses door: ", player_choice))
+
+```
+
+#### Step 1.c: the game host opens a losing door
+
+Back to the game host The game host needs to pick a door among the two doors not chosen by the player and that does not contain the car.
+
+```{r}
+# TODO: define a vector called `remaining_doors` that contains the names of all the doors that contain goats AND were not selected by the player. Use the function `setdiff`.
+
+# --- your code ---
+
+
+
+```
+
+Now that you defined which doors the game host is allowed to open, the next step is for the game host to actually open one of those doors.
+
+```{r}
+# TODO: sample one of the remaining doors and assign it to the variable called `opened_door`.
+# TODO: get the name of the closed door that hasn't been chosen by the player and hasn't been opened by the game host and assign it to a variable `closed_door`.
+
+# --- your code ---
+
+
+
+
+```
+
+When you write code it's often useful (even necessary) to write tests to make sure that your code works as intended.
+
+```{r}
+# TODO: write code that check that `closed_door`, `opened_door`, and `player_choice` have different values.
+
+# --- your code ---
+
+
+```
+
+#### Step 1.d: the player decides to switch or stay
+
+Back to the player. The player now has the choice to *stay* with their first choice or to *switch* and pick the other closed door.
+
+```{r}
+# TODO: create a variable called `winning_strategy` and assign the values of "stay" or "switch" depending on whether, switching or staying with the original choice would have led the player to win the car. 
+
+# --- your code ---
+
+
+
+
+# the code below prints the name of the winning strategy.
+print(paste0("The winning strategy in this case was: ", winning_strategy))
+
+```
+
+#### Step 1.e: conclusion?
+
+You can now run (all of) the above code multiple times and see each time what strategy won.
+
+Given the results of the above game(s), did you change your opinion?
+
+> Yes/No
+
+### Step 2: Implementing N round of the game
+
+The code you wrote so far runs only 1 round of the game and does not save the results of the game. In this exercise you will write code to run many rounds of the game and record data of each round in a table.
+
+```{r}
+# Explore the code below and try to understand what it does.
+
+sim_n <- 100 # number of rounds you want your simulations to run. 
+
+Results <- data.frame()
+for (run in 1:sim_n) {
+  
+  # random values
+  result <- sample(c("Option-1", "Option-2"), 1)
+  
+  # concatenate the results of this round into the Results data.frame()
+  tmp <- data.frame(run, result)  
+  Results <- rbind(Results, tmp)
+  
+}
+
+
+# display the number of times each Option was observed
+table(Results$result)
+
+```
+
+Now it's your turn. Write code below that combines the for loop you've just seen with the simulation code for 1 round of the game you wrote earlier in order to simulate the game, 1000 times.
+
+```{r with_for_loop}
+
+sim_n <- 1000
+doors <- c("A", "B", "C")
+
+tic <- Sys.time()
+
+Results <- data.frame()
+for (run in 1:sim_n) {
+  
+  # --- your code ---
+ 
+}
+
+toc <- Sys.time()
+for_loop_duration <- toc - tic
+
+# How often would each strategy win.  
+prop.table(table(Results$winning_strategy))
+
+```
+
+From the stimulation you just ran, what percentage of games would you have won with the "stay" strategy?
+
+> I would have won ... % of the time.
+
+### Step 3: Improving the code
+
+The code above can be improved and be made shorter, faster and more flexible. There are various ways of doing this. Below is just one example.
+
+```{r}
+# TODO: write a function that takes as input a variable called `doors` which is a vector with the labels of the doors and outputs a string "stay" or "switch" depending on which strategy won. This function is a "wrapper" around the code you wrote to simulate 1 round of the game. The code below shows you the basic structure of the function.
+
+# --- your code ---
+
+
+# run the function
+# run_game(doors = c("A", "B", "C", "D"))
+
+
+
+```
+
+We now want to run the function `run_game()` above many times. Instead of using a for loop as you did earlier, use the `replicate()` function.
+
+```{r with_replicate}
+# TODO: run run_game() 1000 times using the replicate() function and store the results of those 1000 rounds in a variable called results.
+
+
+sim_n <- 1000
+doors <- c("A", "B", "C")
+
+tic <- Sys.time()
+
+# --- your code ---
+
+```
+
+The for loop version took `r for_loop_duration`; the replicate version took `r replicate_duration`
+
+The advantage of writing a function is that now your code is cleaner and easier to read and reuse and now you can also use the function in a more flexible way.
+
+For example, you can now ask questions like: What happens if there are more doors to choose from? Which strategy is better? What happens if there are less doors to chose from?
+
+```{r}
+# TODO: using functions you wrote earlier, evaluate the probability of winning with the switch strategy when the game involves 4 or 5 doors (instead of the 3).
+
+# --- your code ---
+
+
+
+
+```
+
+Is there anything wrong with those simulations?
+
+## Performance
+
+When you write code that is meant to be run many times and/or by many people, it can make sense to optimize your code so it runs faster. There are several ways of doing this; here we have a quick glance at how that could look like.
+
+```{r}
+tic <- Sys.time() # get the exact current time
+
+Sys.sleep(1) # wait for 1 second
+
+toc <- Sys.time() # get the exact current time again
+elapsed_time <- toc - tic # compute how much time has elapsed
+
+print(paste0("running this code took: ", elapsed_time))
+```
+
+Using the code just presented, evaluate which of the two versions of the simulations run faster, the one using the `for loop` or the one using `replicate()`. Make sure that both versions execute the same number of runs.
+
+```{r}
+# TODO: rewrite your for-loop and replicate code chunks so that they measure how much time they take to run. Store each measure in its own variable, respectively for_loop_duration and replicate_duration
+
+# The code chunks presented in the solution above (with_for_loop and with_replicate) have already been rewritten to measure how much time each of them took.
+
+data.frame(for_loop_duration, replicate_duration)
+
+```
+
+Which version is faster? How much faster?
+
+> The faster version is *with replicate* and it is *\~10* times faster.
