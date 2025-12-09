@@ -1,0 +1,543 @@
+---
+title: "Data Visualization Exercises (basics)"
+author: "Pedro"
+output:
+  html_document:
+    code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(tidyverse)
+
+# this will load several datasets you will need for the exercises
+load("data/data_viz.Rdata")
+
+```
+
+## Instructions
+
+This is a Quarto markdown (qmd) file which combines both text and code. You can render this document by clicking the Knit button in RStudio.
+
+The goal of this Quarto markdown file is to give you the opportunity to test and improve your ggplot2 skills. There are several exercises below and your task is to solve those exercises by creating figures in ggplot2.
+
+The data and the tidyverse will be loaded once you run the code chunk above. Inspect your global environment in Rstudio to see the list of datasets that have been been loaded. Datasets D1 to D9 correspond to the scenarios we've seen during the previous class.
+
+Note that there are sometimes multiple formats for the data (e.g., D1, D1b for scenario #1); check out which one you need to make a particular figure.
+
+
+
+### Exercise 0.1
+
+Render this document.
+
+
+
+
+## Scenario #1
+
+A company claims their pill increases IQ.
+
+20 participants are enrolled in your study. You measure their IQ before and after they take the pill.
+
+### Exercise 1.1
+
+Have a look at the data from this scenario. This data has been formatted in two different ways `D1` and `D1b`. How are these formats different? Which one do you think is best?
+
+```{r}
+head(D1)
+```
+
+```{r}
+head(D1b)  
+```
+
+> I think D1 / D1b is best.
+
+
+
+
+
+### Exercise 1.2
+
+Reproduce this image using ggplot2
+
+![](./images/s01_a.png)
+
+**Your Solution:**
+
+```{r}
+# Write your code here
+```
+
+
+Try alternative geoms for this figure (e.g, dots, violins):
+
+**Your Solution:**
+
+```{r}
+# Write your code here
+```
+
+
+
+
+## Scenario #2
+
+A company claims their pill increases IQ. 40 participants are enrolled in your study. You measure their IQ before and after they take the pill. 20 participants get the real pill; 20 participants get a fake pill (placebo);
+
+```{r}
+head(D2)
+```
+
+
+```{r}
+head(D2b)
+```
+
+### Exercise 2.1
+
+Reproduce the image below using ggplot2
+
+![](./images/s02_a.png)
+
+
+**Your Solution:**
+
+```{r}
+# Write your code here
+
+```
+
+### Exercise 2.2
+
+Try to produce a figure that looks like this using ggplot2. Hint: This figure assumes some processing of the data.
+
+![](./images/s02_b.png)
+
+**Your Solution:**
+
+```{r}
+# Write your code here
+
+```
+
+### Exercise 2.3
+
+Plot post as a function of pre using a scatterplot with a linear regression; 
+add also a dashed line that shows the identity line; 
+make the plot square. 
+
+```{r}
+# Write your code here
+
+
+```
+
+## Scenario #3
+
+A company claims their pill increases IQ, and that higher dosages lead to larger IQ increases.
+
+1000 participants are enrolled in your study. You measure their IQ before and after they take the pill. The dosage of the ingredient in the pill is varied across participants.
+
+### Exercise 3.1
+
+Try to produce a figure that looks like this using ggplot2.
+
+![](./images/s03_a.png)
+
+**Your Solution:**
+
+```{r}
+# Write your code here
+
+
+```
+
+### Exercise 3.2
+
+Try to produce a figure that looks like this using ggplot2.
+
+![](./images/s03_b.png)
+
+Note: you must display a linear regression.
+
+
+Hint: you will need to compute a new variable (`IQ_gain`).
+
+The above figure requires you to create a new variable (`IQ_gain`). 
+Here's a way to do that in base R (we will soon see a better way).
+
+
+
+```{r}
+D3$IQ_gain <- D3$post - D3$pre
+```
+
+
+
+
+**Your Solution:**
+
+```{r}
+# Write your code here
+
+```
+
+### Exercise 3.3
+
+Look at the figure below. Can you readily make that figure in ggplot2? If not, what additional steps are needed for you to be able to plot this figure?
+
+![](./images/s03_c.png)
+
+Here again, we need to create a new variable. Again we will use base R for now:
+
+```{r}
+D3b$dose_level <- cut_interval(D3b$dose, 3)
+```
+
+
+
+**Your Solution:**
+
+```{r}
+# Write your code here
+
+
+
+```
+
+## Scenario #4
+
+A company claims their pill increases IQ and is most effective for younger women.
+
+1000 participants are enrolled in your study. You measure their IQ before and after they take the pill.
+
+### Exercise 4.1
+
+Plot a histogram to show the distribution of ages in D4.
+
+Note: try also "density".
+
+**Your Solution:**
+
+```{r}
+# Write your code here
+
+
+```
+
+### Exercise 4.2
+
+Plot a histogram to show the distribution of ages in D4, separately for men and women (within the same panel).
+
+**Your Solution:**
+
+```{r}
+# Write your code here
+
+```
+
+### Exercise 4.3
+
+Create a new variable called `age_group` which takes the value of "young" when age \< 30 and "old" otherwise.
+
+**Your Solution:**
+
+```{r}
+# Hint: use the function "ifelse()"
+# to learn more about this function type the following in your console
+# ?base::ifelse
+
+# Write your code here
+
+```
+
+Make a plot to verify that the code above worked (i.e., age \< 30 is indeed labelled "young" and the others "old").
+
+**Your Solution:**
+
+```{r}
+# Write your code here
+
+```
+
+### Exercise 4.4
+
+Try to produce a figure that looks like this using ggplot2.
+
+![](./images/s04_a.png)
+
+Note: use a boxplot instead of bars.
+
+**Your Solution:**
+
+```{r}
+# Write your code here
+
+
+```
+
+
+
+In the previous code, the stats were computed during the data visualization process by ggplot2. Now we will compute the stats manually, then use ggplot2 to visualize those stats.
+
+
+
+The code below transforms the data to make it easier to reproduce the figure from exercise 4.4
+
+```{r}
+library(tidyverse)
+D4_summary <- D4 |> 
+  group_by(gender, age_group) |> 
+  summarize(IQ_gain = mean(effect),
+            n = n(),
+            IQ_gain_se = sd(effect)/sqrt(n),
+            IQ_gain_lower = IQ_gain - 1.96*IQ_gain_se, 
+            IQ_gain_upper = IQ_gain + 1.96*IQ_gain_se) |> 
+  unite(gender, age_group, col = "combined_group", sep = "_", remove = FALSE)
+
+head(D4_summary)
+```
+
+Now that we have the summary stats, we can plot those:
+
+```{r}
+ggplot(D4_summary, 
+       aes(combined_group, IQ_gain, fill = gender, alpha = age_group)) +
+  geom_col(position = "dodge", col = "black") +
+  geom_errorbar(aes(ymin = IQ_gain_lower, ymax = IQ_gain_upper), col = "black", alpha = 1, width = 0, linewidth = 2) +
+  theme_bw() + 
+  coord_flip() +
+  guides(fill = "none")
+
+```
+
+### Exercise 4.5
+
+Look at the code that generates the figure above. There is a command that removes the legend for gender. Can you add in the legend for gender and remove instead the legend for age group?
+
+**Your Solution:**
+
+(copy paste the code from the chunk above in the chunk below and edit only the code in the chunk below).
+
+```{r}
+# Write your code here
+
+
+```
+
+## Scenario #5
+
+A company claims their pill increases IQ, and more so for some university student than others. The company sold pills to 5 different universities. The number of students and their average IQ is different across each University. From each student you know the age, gender, grades before the pill, grades after the pill, nationality, IQ before the pill, IQ after the pill and self-rating of well-being.
+
+### Exercise 5.1
+
+Plot the number of people there are for each nationality.
+
+**Your Solution:**
+
+```{r}
+# Write your code here
+
+
+```
+
+### Exercise 5.2
+
+Plot the number of people there are for each nationality **by gender**.
+
+**Your Solution:**
+
+```{r}
+# Write your code here
+
+
+```
+
+### Exercise 5.3
+
+Plot the number of people there are for each nationality **by university**.
+
+**Your Solution:**
+
+```{r}
+# Write your code here
+
+
+```
+
+### Exercise 5.4
+
+Plot the number of people there are for each nationality **by university** and **by gender**.
+
+**Your Solution:**
+
+```{r}
+# Write your code here
+
+
+```
+
+## Scenario #6
+
+Some customers complain that the pill has no effect on them. You wonder whether the pill is effective for some people but not for others. Using any data you collected until now, how would you test this hypothesis visually?
+
+### Exercise 6.1
+
+Plot a density curve for the effect of the pill.
+
+**Your Solution:**
+
+```{r}
+# Write your code here
+
+```
+
+### Exercise 6.2
+
+Overlay two histograms on the same plot: one for IQ_pre and one for IQ_post using the D6 data.
+
+The result should look something like this:
+
+![](./images/s06_b.png)
+
+**Your Solution:**
+
+```{r}
+# Write your code here
+
+```
+
+## Scenario #7
+
+The company wants to know the long-term effects of taking their IQ-increasing pill once. 20 participants are enrolled in your study. You measure their IQ before they take the pill. Then you repeat that IQ measure every day for the next week.
+
+### Exercise 7.1
+
+The goal of the next exercises will be to produce a figure that looks like the figure below using ggplot2.
+
+![](./images/s07_a.png)
+
+Hint: try making this figure using `geom_point()` rather than `geom_boxplot()`.
+
+**Your Solution:**
+
+```{r}
+# Write your code here
+
+```
+
+
+
+
+
+
+### Exercise 7.2
+
+Adjust the figure you plotted in 7.1 to have different colors for time == 0 than for time \> 0 and add horizontal lines, similar to what is shown in the figure below.
+
+![](./images/s07_b.png)
+
+The following code creates a data frame called `D7_0` which contains the 1st, 2nd and 3rd quartiles for the baseline time point:
+
+```{r}
+D7_0 <- D7 |> 
+  filter(time == 0) |> 
+  summarise(q_25 = quantile(IQ, probs = 0.25), 
+            q_50 = quantile(IQ, probs = 0.5), 
+            q_75 = quantile(IQ, probs = 0.75))
+```
+
+
+
+Copy-paste your previous solution and add horizontal lines for the 3 quartiles computed above.
+
+**Your Solution:**
+
+```{r}
+# Write your code here
+
+```
+
+
+## Scenario #9
+
+You are investigating a legal case against a company that claims their pill increases IQ. The data so far indicates that the pill does indeed increase IQ for some people, but you suspect a methodological flaw: people were allowed to refuse the post-pill IQ test if they want to and if so they were excluded from the study (the “out” group).
+
+Imagine different scenarios of what the data for the “out” group would look like if they had completed the post-pill IQ test.
+
+Which of these scenarios did the company assume?
+
+### Exercise 9.1
+
+Plot the density curves of `post_IQ` for both the "out" and "in" group.
+
+**Your Solution:**
+
+```{r}
+# Write your code here
+
+```
+
+### Exercise 9.2
+
+Add "rugs" to the figure you just created.
+
+**Your Solution:**
+
+```{r}
+# Write your code here
+
+```
+
+### Exercise 10.1
+
+Here's an example of a figure with titles and legends.
+
+```{r}
+diamonds_plot <- ggplot(diamonds, aes(x = cut)) + 
+  geom_bar() +
+  labs(x = "Diamond cut quality",
+       y = "count",
+       title = "High quality diamonds are most frequent",
+       subtitle = "Sample of 53'940 diamonds.",
+       caption = "diamonds dataset from ggplot2")
+diamonds_plot
+```
+
+
+Taking inspiration from the figure above, go back to some of the figures you've created so far and add titles and legends.
+
+**Your Solution:**
+
+```{r}
+# Write your code here
+
+```
+
+
+## Multiple figures
+
+There are times you want to have multiple panels in the same figure. There are two main cases:
+
+a.  the figures belong in fact to the visualization intention and you're using facets to split the data by one or more variables;
+b.  you want a collage of different figures from different visualization intentions.
+
+Here we will only see a. and in a future course we will see b.
+
+### Exercise 11.1
+
+Using the ggplot2 "facets" functions, try to reproduce the figure shown below:
+
+![](./images/s12_3.png)
+
+**Your Solution:**
+
+```{r}
+# Write your code here
+
+```
+
+
