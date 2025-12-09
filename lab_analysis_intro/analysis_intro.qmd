@@ -4,6 +4,11 @@ format: html
 ---
 
 
+# Introduction*
+
+Say a few words about the project.
+
+
 
 
 ## Load data
@@ -24,6 +29,8 @@ res
 
 ```
 
+the correlatin is small (r = 0.10) and highly significant (p<0.001) based on a pearson correlation test (t(14997)=12.933).
+
 ## Reporting results
 
 ```{r}
@@ -35,7 +42,13 @@ report(res)
 ## Plotting
 
 ```{r}
-plot(ESS$last_evaluation, ESS$satisfaction_level)
+
+
+library(ggplot2)
+ggplot(ESS, aes(x = last_evaluation, y=satisfaction_level, color = salary)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth() +
+  facet_wrap(~salary)
 
 
 ```
@@ -48,7 +61,7 @@ m1
 ```
 
 ```{r}
-summary(m1)
+anova(m1)
 ```
 
 ## Using the report package
