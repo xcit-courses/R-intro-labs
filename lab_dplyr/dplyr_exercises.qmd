@@ -1,0 +1,157 @@
+---
+title: "dplyr exercises"
+format: html
+editor: visual
+---
+
+## About
+
+This document offers various exercises to help you train your dplyr skills.
+
+Make sure to read this book chapter: https://r4ds.hadley.nz/data-transform
+
+It can be very helpful to have the cheatsheet at hand:
+
+## Import data
+
+The data to be used for this set of exercises is `data/school_grades.csv`.
+
+## Exercises
+
+```{r}
+# "I just want the data for math..."
+
+
+```
+
+```{r}
+# "I just want the data for math and biology..."
+
+```
+
+```{r}
+# "I just want the data for "mean" stuff..."
+
+
+```
+
+```{r}
+# "I just want the data for "mean accuracy"..."
+
+```
+
+```{r}
+# "I just want the data for "mean accuracy" in math..."
+
+```
+
+```{r}
+# "I just want the data for males..."
+
+```
+
+```{r}
+# "I just want the data from males and females..."
+
+```
+
+```{r}
+# "I just want the data from males and females but only for math and biology..."
+
+```
+
+```{r}
+# "I just want the data from males and females that are older than 18 and younger than 20 and that are positive..."
+
+
+```
+
+```{r}
+# "Is the data sorted... please sort the table in a meaningful way"
+
+
+```
+
+```{r}
+# "how many people are there for each gender?"
+
+
+```
+
+```{r}
+# "how many people are there that are older than 18?"
+
+
+```
+
+```{r}
+# "how many people are there that are older than 18 for each of the reported genders?"
+
+
+```
+
+```{r}
+# "what are the average math scores in test_3?"
+
+
+```
+
+```{r}
+# "what are the average math scores in test_3 for each of the reported genders?"
+
+
+```
+
+```{r}
+# "what are the average math scores in test_3 for people younger than 18 vs older than 18?"
+
+
+```
+
+```{r}
+# "I want to compute the average of all the columns in the table."
+
+
+```
+
+```{r}
+# "I want to compute the average of all the columns in the table, but separately for each value of gender."
+
+
+```
+
+```{r}
+# "are there any duplicated values in the dataset? If so, how many?
+
+
+```
+
+```{r}
+# "please remove any duplicated values and update all the previous code accordingly...
+
+
+```
+
+```{r}
+# "There's a column called NumberOfTVs at the very end of the table. I don't like that label; can you change it...
+
+
+```
+
+```{r}
+# "...also that column should not be at the very end but rather after the 'is_positive' columns. Can you please change that?"
+
+
+```
+
+```{r}
+# There are two additional tables. Can you "put them together in one big table"?
+# One table says if subjects were caught cheating and the other is a table we collected from someone else that shows who visited the library. 
+
+```
+
+```{r}
+# "compute a grade for each student that is the sum of all the scores across study domains. Now give each person a rank (from best=1 to worst=last one).
+
+
+```
