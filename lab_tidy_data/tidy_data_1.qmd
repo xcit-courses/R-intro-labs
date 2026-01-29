@@ -1,0 +1,153 @@
+---
+title: "tidy data exercises (review datasets)"
+format: html
+editor: source
+---
+
+# Tidyng data
+
+
+Tidying data is a critical step in making a dataset ready for use. 
+
+By tidying data I mean changing the way the data is packaged to make it easier/more intuitive to use **without** changing the informational content of the data. Removing outliers or z-transforming certain variables are operations that remove information from the data while renaming columns and removing duplicate entries do not affect the informational content of the data.
+
+
+Tidying data  can be a complex and time consuming process, often requirering multiple packages. The following set of exercises focus on diagnosing key issues of messy data using real datasets. Your task is to review those datasets using the provided checklist.
+
+
+
+## Methodology
+
+The following is a checklist (wip) that I developed to help structure the process of tidying (tabular) data. 
+
+It assumes you have a dataset at hand that you can open (e.g., import in R) and presents a set of questions that roughly correspond to the order of operations you would typically perform to tidy a dataset (sometimes you need to go back and forth between steps to tidy a dataset). At the end of the process you should have a tidy dataset that is  ready for use.
+
+
+
+Note that some additional steps would be necessary before sharing the data publicly. For instance, you need to make sure that your tidy dataset contains no personal information and that you have the rights to share that data. 
+
+
+
+
+
+## Checklist:
+
+1.  [ ] Do you have the right number of tables?
+
+        - what is the observational unit of each table?
+        - should a table be split into multiple tables?
+        - should multiple tables be grouped into one?
+
+2.  [ ] Do your tables have the tidy data shape (e.g., one row per observation)? 
+
+        - are the column names simple? 
+        - are the values simple (e.g., a number)
+        
+3.  [ ] Are the columns well named? Do you know what they mean?
+
+        - valid variable names
+        - explicit
+        - unambiguous
+        - consistent with and across tables
+        
+        
+4. [ ] Are the values in each column appropriate? Do you know what they mean?
+
+5. [ ] Does each column have the appropriate data type (e.g., factor)?
+
+6. [ ] Are missing values properly encoded?
+
+7. [ ] Are there duplicates in the tables? 
+
+8. [ ] Are the columns ordered meaningfully?
+
+9. [ ] Are the rows sorted meaningfully?
+
+10. [ ] Is the dataset documented (dataset description, codebook)?
+
+11. [ ] Is the dataset saved in appropriate file formats (e.g., csv)?
+
+12. [ ] Does the data contain personal information? 
+
+        - don't share other people's personal data without their consent
+        - don't become an accomplice
+        - if you see something, say something: if you find unintentionnaly shared personal data, inform the data providers.
+
+
+
+
+
+
+## Exercises
+
+Review various datasets using checklist. Are these datasets ready to use? If not, what would you do to them?
+
+
+
+
+#### 1) Linear Ballistic Accumulator Models of Confidence and Response Time
+
+[https://osf.io/je63s/overview](https://osf.io/je63s/overview)
+
+
+
+#### 2) Covid-19 Pandemic Mental Health Project
+
+[https://osf.io/st5cg/metadata/osf](https://osf.io/st5cg/metadata/osf)
+
+
+
+#### 3) The Method of Loci: The degree of proactive interference and the related re-usability of memory locations.
+
+[https://osf.io/8rbhg/overview](https://osf.io/8rbhg/overview)
+
+
+
+
+#### 4) Alexithymia and Mental Health
+
+[https://osf.io/jwhna/overview](https://osf.io/jwhna/overview)
+
+
+
+#### 5) Mint for Mood, Not Memory: The Effect of Peppermint Candy on Happiness and Memory
+
+[https://osf.io/539pg/overview](https://osf.io/539pg/overview)
+
+
+
+
+#### 6) Child and Adolescent Mental Health Initiative (CAMHI)
+
+[https://osf.io/crz6h/overview](https://osf.io/crz6h/overview)
+
+
+#### 7) Investigating Social Support and Barriers to Mental Health Care among LGBTQ+ Youth
+
+[https://osf.io/dya83/overview](https://osf.io/dya83/overview)
+
+
+
+#### 8) Psychological and Physiological Determinants of Stress and Their Impact on Academic Performance"
+
+[https://osf.io/2mr5w/overview](https://osf.io/2mr5w/overview)
+
+
+
+#### 9) Brief structured respiration practices enhance mood and reduce physiological arousal
+
+[https://www.sciencedirect.com/science/article/pii/S2666379122004748?via%3Dihub#ec-research-data](https://www.sciencedirect.com/science/article/pii/S2666379122004748?via%3Dihub#ec-research-data)
+
+
+
+#### 10) A Large-Scale Test of the Goldilocks Hypothesis: Quantifying the Relations Between Digital-Screen Use and the Mental Well-Being of Adolescents
+
+[https://doi.org/10.1177/0956797616678438](https://doi.org/10.1177/0956797616678438)
+
+
+
+
+
+
+
+
