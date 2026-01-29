@@ -82,6 +82,7 @@ Note that some additional steps would be necessary before sharing the data publi
 
 Review various datasets using checklist. Are these datasets ready to use? If not, what would you do to them?
 
+Pay attention to how the data and code are organized. What do you like? What do you dislike?
 
 
 
