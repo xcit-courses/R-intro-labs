@@ -1,5 +1,5 @@
 ---
-title: "tidy data exercises (review datasets)"
+title: "tidy data exercises (renaming)"
 format: html
 editor: source
 ---
@@ -54,6 +54,42 @@ dset
 What do you thinnk about those column names?
 
 How can you change them?
+
+
+
+
+
+## How to chose good variable names (column names)
+
+For a long version see:\
+
+
+https://behaverse.org/data-model/explanations/naming.html
+
+
+For a short version:
+
+-   use snake_case ("math_grades" MathGrade Mathgrades "Math Grades")
+-   use variable names that are meaningful (i.e., stand on their own) "population" "population_count" "pop" "qst_1"
+-   don't use abreviations (population_count, pop_n, )
+-   you must be consistent;
+
+
+## How to rename columns?
+
+### dplyr
+
+```{r}
+
+```
+
+
+
+### janitor
+
+```{r}
+library(janitor)
+```
 
 
 

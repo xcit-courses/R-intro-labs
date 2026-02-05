@@ -1,0 +1,97 @@
+---
+title: "tidy data exercises (factors and dates)"
+format: html
+editor: source
+---
+
+
+
+```{r}
+library(tidyverse)
+```
+
+# Data formats
+
+
+## Example 1:
+Have a look at the following dataset:
+
+
+
+```{r}
+rating_data <- data.frame(
+  choice = c("Strongly disagree", "disagree", "neither agree nor disagree", "agree", "strongly agree"),
+  freq = c(10, 12, 13, 50, 21)
+)
+
+rating_data
+```
+
+
+Create a bar plot showing the frequency of each choice. 
+
+```{r}
+ggplot(rating_data, aes(choice, freq)) + geom_bar(stat = 'identity') + coord_flip()
+```
+
+What's the issue?
+
+How can you fix this?
+
+
+## Example 2:
+
+
+```{r}
+load("datasets/date_example.RData")
+
+date_example
+
+
+```
+
+
+### Exercise
+Create a figure showing rate as function of date1; use both points and lines.
+
+```{r}
+
+```
+
+
+What can you say about this figure?
+
+
+
+
+### Exercise
+Create a figure showing rate as function of date2; use both points and lines.
+
+```{r}
+
+```
+
+
+What can you say about this figure?
+
+
+
+
+### Exercise
+Create a figure showing rate as function of date3; use both points and lines.
+
+```{r}
+
+```
+
+
+What can you say about this figure?
+
+
+## How to encode dates?
+
+Have a look at the [lubridate sheatsheet](https://rstudio.github.io/cheatsheets/lubridate.pdf)
+
+
+
+

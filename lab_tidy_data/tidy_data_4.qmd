@@ -1,0 +1,220 @@
+---
+title: "tidy data exercises (NA, etc)"
+format: html
+editor: source
+---
+
+
+
+## Handling Missing values
+
+
+
+### Replace a specific value by NAs
+
+#### Method 1: during import
+
+You can specify wht counts as NA in the original dataset at the time of importing the data
+
+```{r}
+
+# tmp <- table1
+# tmp$country[3] <- 99
+# tmp$year[2] <- -99
+# tmp$cases[4] <- 99
+# write.csv(tmp, file="./data/dataset_with_NA.csv")
+filename <- "datasets/dataset_with_NA.csv"
+d1 <- read.csv(file = filename)
+d2 <- read.csv(file = filename, na.strings = c(99, -99))
+d1
+d2
+
+
+read_csv(file = filename)
+read_csv(file = filename, na = c('99', '-99'))
+# read_csv(file = filename, na = c(99, -99)) # this will generate an error; na values must be strings
+
+```
+
+#### Method 2: after import
+
+```{r}
+# write code to replace the -99 and the 99 by NA
+d1
+
+
+d1[d1 == -99 | d1 == 99] <- NA
+
+
+# base R solution: very efficient solution
+d1[d1 == -99 | d1 == 99] <- NA
+d1
+
+
+d1 <- read.csv(file = filename)
+d1
+
+
+# dplyr solution
+d1 |> mutate(
+  country = replace(country, country == 99, NA), 
+  year = replace(year, year == -99, NA), 
+  cases = replace(cases, cases == 99, NA), 
+)
+
+## janitor solution
+# janitor::convert_to_NA(d1, c("99", "-99"))
+
+# dplyr solution #2
+#d1 |> 
+#  na_if(c("99", "-99"))
+
+d1 |> mutate(
+  country = na_if(country, "99"),
+  year = na_if(year, -99), 
+  cases = na_if(cases, 99), 
+  )
+  
+
+
+d1 |> 
+  mutate(across(where(is.character), ~na_if(., "99"))) |>
+  mutate(across(where(is.character), ~na_if(., "-99"))) |>
+  mutate(across(where(is.numeric), ~na_if(., 99)))  |> 
+  mutate(across(where(is.numeric), ~na_if(., -99)))
+  
+  
+```
+
+### replace NAs by some other value
+
+For example replace NAs with a value of 0.
+
+```{r}
+# replace NAs with some other value
+# baseR
+# dplyr
+# janitor
+# still other solutions...
+
+
+# base R solution: very efficient solution
+d1[d1 == -99 | d1 == 99] <- NA
+d1
+
+d1[is.na(d1)] <- 0
+
+
+# using dplyr + tidyr
+d1 |> 
+  mutate(across(where(is.numeric), ~replace_na(.x, 0))) |> 
+  mutate(across(where(is.numeric), ~replace_na(.x, "0")))
+  
+
+
+
+```
+
+
+
+### drop NAs
+
+look at janitor: remove_empty functions
+
+```{r}
+
+
+dirty_data <- read_excel("datasets/dirty_data.xlsx", skip = 1) |> 
+  clean_names()
+dirty_data
+
+dirty_data2 <- dirty_data |> 
+  janitor::remove_empty()
+
+
+dirty_data |> remove_empty(c("rows", "cols"), cutoff = 1) # default
+dirty_data |> remove_empty("rows")
+dirty_data |> remove_empty("cols", cutoff = 0.5)
+
+
+
+dirty_data3 <- dirty_data |> 
+  remove_empty("cols") |> 
+  drop_na()
+
+```
+
+### filling-in NAs
+
+key principle when tidying: don't modify the information included in the data only how it is structured, represented, encoded.
+
+imputation of missing values - mean, mode - knn estimate most likely value give the rest of data.
+
+
+
+
+
+## Remove duplicate values
+
+```{r}
+dorder <- tribble(
+  ~treatment, ~age, ~dose,~effect_sd,  ~patient_id, ~effect_mean, 
+  "a",   18, 0.05, 0.03, "1214", 0.34,
+  "a",   18, 0.05, 0.03, "1214", 0.34,
+  "a",   18, 0.05, 0.03, "1214", 0.34,
+  "a",   18, 0.03, 0.06, "2314", 1.85,
+  "b",   22, 0.03, 0.02,"4523", 0.67,
+  "a",   38, 0.1, 0.04,"5925", -0.03,
+)
+
+dorder |> distinct() # removes rows that are exact copies
+dorder |> distinct(treatment)
+dorder |> distinct(treatment, .keep_all = TRUE)
+```
+
+
+
+
+## Change the order of the columns
+
+Look at the table below. Do you think the columns are organize
+
+```{r}
+dorder <- tribble(
+  ~treatment, ~age, ~dose,~effect_sd,  ~patient_id, ~effect_mean, 
+  "a",   18, 0.05, 0.03, "1214", 0.34,
+  "b",   22, 0.03, 0.02,"4523", 0.67,
+  "a",   38, 0.1, 0.04,"5925", -0.03,
+)
+
+
+
+dorder
+```
+
+Change the orderining of the columns
+
+```{r}
+# this is the order of the columns that we want: 
+# patient_id, age, treatment, dose, effect_mean, effect_sd
+
+# baseR
+dorder[, c("patient_id", "age", "treatment", "dose", "effect_mean", "effect_sd")]
+
+# dplylr
+dorder |> select(patient_id, age, treatment, dose, effect_mean, effect_sd)
+
+dorder |> dplyr::relocate(age, .after = dose)
+
+dorder |> dplyr::relocate(age, .before = dose)  
+
+dorder |> dplyr::relocate(age,dose, .after = patient_id)  
+
+
+dorder |> dplyr::relocate(starts_with("effect"), 
+                          .after = patient_id)  
+
+
+```
+
+
