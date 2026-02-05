@@ -1,0 +1,146 @@
+---
+title: "dplyr demo"
+format: html
+---
+
+
+
+```{r}
+library(tidyverse)
+
+starwars
+
+
+
+```
+## data.frame() vs tibble()
+
+```{r}
+starwars_tibble <- starwars
+starwars_df <- as.data.frame(starwars)
+
+
+```
+
+## select
+
+```{r}
+
+starwars$name
+starwars[c("name", "height", "gender")]
+starwars[,1]
+
+
+
+starwars |> 
+  select(mass:eye_color)
+
+
+
+
+```
+
+## Filter
+
+```{r}
+starwars |> 
+  filter(eye_color == "blue" & species == "Human")
+
+starwars |> 
+  filter(eye_color == "blue", species == "Human")
+
+
+starwars |> 
+  filter(eye_color == "blue") |> 
+  filter(species == "Human")
+
+
+```
+
+
+## Arrange
+
+
+```{r}
+starwars |> 
+  arrange(desc(height)) |> 
+  head(5)
+```
+
+## mutate
+
+```{r}
+starwars |> 
+  mutate(height_in_m = height / 100) |> 
+  mutate(height_in_m_rounded = round(height_in_m)) |> 
+  mutate(is_male = ifelse(sex == "male", TRUE, FALSE))
+
+
+starwars |> 
+  mutate(height_in_m = height / 100, 
+         height_in_m_rounded = round(height_in_m), 
+         is_male = ifelse(sex == "male", TRUE, FALSE))
+
+
+starwars |> 
+  mutate(height_in_m = height / 100, .before = height)
+
+
+
+
+```
+## Summarise
+
+```{r}
+
+starwars |> 
+  summarize(height_mean = mean(height, na.rm = TRUE), 
+            height_sd = sd(height, na.rm = TRUE),
+            mass_median = median(mass, na.rm = TRUE), 
+            n = n())
+
+
+human_data <- starwars |> 
+  filter(species == "Human")
+
+nonhuman_data <- starwars |> 
+  filter(species != "Human")
+
+
+human_summary <- human_data |> 
+    summarize(height_mean = mean(height, na.rm = TRUE), 
+            height_sd = sd(height, na.rm = TRUE),
+            height_var = var(heigh, na.rm = TRUE),
+            mass_median = median(mass, na.rm = TRUE), 
+            n = n())
+
+nonhuman_summary <- nonhuman_data |> 
+    summarize(height_mean = mean(height, na.rm = TRUE), 
+            height_sd = sd(height, na.rm = TRUE),
+            height_var = var(heigh, na.rm = TRUE),
+            mass_median = median(mass, na.rm = TRUE), 
+            n = n())
+
+
+human_summary <- human_summary |> 
+  mutate(species = "Human")
+
+nonhuman_summary <- nonhuman_summary |> 
+  mutate(species = "Not Human")
+
+
+
+data_summary <- rbind(human_summary, nonhuman_summary)
+
+
+starwars |> 
+  #group_by(species, eye_color) |> 
+  summarize(height_mean = mean(height, na.rm = TRUE), 
+            height_sd = sd(height, na.rm = TRUE),
+            height_var = var(height, na.rm = TRUE),
+            mass_median = median(mass, na.rm = TRUE), 
+            n = n())
+
+  
+```
+
