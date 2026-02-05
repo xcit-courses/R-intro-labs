@@ -1,0 +1,60 @@
+---
+title: "tidy data exercises (review datasets)"
+format: html
+editor: source
+---
+
+
+
+```{r}
+library(tidyverse)
+```
+
+# Tidyng data
+
+```{r}
+
+# example from:
+# https://rstudio-pubs-static.s3.amazonaws.com/931128_d1b99faddf5c45e098a797c8d6b9c5a3.html
+dset <- as.data.frame(matrix(rnorm(n = 70, 0, 1), ncol = 7))
+names(dset) <- c("first column", "SEC0nd!", " % valueColumn","SAME NAME","SAME NAME", "Age", "$Salary$") 
+dset
+```
+
+
+
+## Exercises
+
+
+```{r}
+# compute the mean of the vrialble called "first column"
+
+
+```
+
+
+
+```{r}
+# compute the median of the vrialble called "$Salary$"
+
+
+```
+
+
+
+```{r}
+# create a new variable that sums "SEC0nd!" and "$Salary$"
+
+
+```
+
+
+
+
+What do you thinnk about those column names?
+
+How can you change them?
+
+
+
+
