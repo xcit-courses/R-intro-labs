@@ -2,7 +2,7 @@ _site/
 .DS_Store
 *.Rproj.user
 *.Rhistory
-*.RData
+.RData
 *.pyc
 __pycache__/
 .Rproj.user/
