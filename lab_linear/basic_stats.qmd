@@ -1,0 +1,142 @@
+---
+title: "Basic statistics using tidyverse"
+format: html
+---
+
+
+
+This notebook provides exercises for simple and multiple linear regression.
+The data used here comes from the ISLR package that you will need to install first.
+We will also use the broom package.
+
+
+
+
+
+```{r}
+# load packages
+library(tidyverse)
+library(ISLR)
+library(report)
+```
+
+
+
+
+```{r}
+data(Wage)
+head(Wage)
+```
+
+
+## Statistics
+
+
+### Correlation
+
+Comptue the correlation between wage and age.
+
+```{r}
+
+
+```
+
+What can you say about that correlation?
+
+
+
+Can you get access to the p-value and store it in a variable? 
+ 
+
+
+
+
+
+### T-test
+
+Do people with Very Good health have higher wages than those with worse health?
+
+```{r}
+
+```
+
+
+What can you conclude?
+
+Can you get access to the p_value and store it as a variable?
+
+
+## The "report" package
+
+Sometimes it might be tricky to accurately report the results of an analysis. The `report` package can help!
+
+```{r}
+cor_result <- cor.test(Wage$wage, Wage$age)
+report(cor_result)
+
+```
+
+
+It works with many statistical tests. Try it on the t-test that was computed earlier.
+
+
+```{r}
+
+```
+
+
+## The "broom" package
+
+```{r}
+library(broom)
+```
+
+
+```{r}
+
+t_test_result <- t.test(Wage$wage~Wage$health)
+broom::tidy(t_test_result)
+
+```
+
+
+
+## Compute stats the tidyverse way
+
+`summarise()` requires each expression to return a single value, so it cannot
+handle `broom::tidy()` results (which are tibbles with multiple columns). Use
+`reframe()` instead — it is designed for exactly this case and works seamlessly
+with `group_by()`.
+
+```{r}
+# t.test via reframe — works on the whole dataset
+Wage |>
+  reframe(broom::tidy(t.test(wage ~ health)))
+```
+
+```{r}
+# cor.test via reframe
+Wage |>
+  reframe(broom::tidy(cor.test(wage, year)))
+```
+
+
+
+
+What's great about this approach is that we can now use the power of tidyverse. 
+
+For example, image we want to compute a t-test of wage for two levels of health (as above) but separately for each level of education. 
+
+In base R, this would involve quite a lot of coding; with the tidyverse and broom, this is becomes a breeze.
+
+
+In the chunck below, update the code we wrote above to compute the t-tests and correlations tests separetly for each level of education.
+
+
+
+```{r}
+
+```
+
+
+
