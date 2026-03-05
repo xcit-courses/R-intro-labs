@@ -1,0 +1,329 @@
+---
+title: "Linear regression"
+format: html
+---
+
+
+This notebook provides exercises for simple and multiple linear regression.
+The data used here comes from the ISLR package that you will need to install first.
+
+We also need the GGally package for plotting.
+
+
+```{r}
+# load packages
+library(tidyverse)
+library(ISLR)
+library(GGally)
+```
+
+
+
+
+```{r}
+data(Wage)
+head(Wage)
+```
+
+
+## Have a look at the data
+
+Do you understand the dataset?
+
+> Type your answer here.
+
+
+
+Does it need tidying?
+
+> Type your answer here.
+
+
+
+
+It's important to plot the data to check if there are any issues that need to be addressed prior to running the analysis. In a confirmatory study, you should not use these plots to guide what analysis to do!
+
+
+
+## Plotting the data
+
+Plot the data in various ways to check if there are any issues, and if so, fix them.
+
+Here we are interested only in the following columns:
+
+- `wage`
+- `age` 
+- `year` 
+- `education`
+- `health`. 
+
+
+
+**Solution:**
+
+A quick way to have a look at the data is to use pairs plots (see for example: [https://jtr13.github.io/cc20/customized-plot-matrix-pairs-and-ggpairs.html](https://jtr13.github.io/cc20/customized-plot-matrix-pairs-and-ggpairs.html))
+
+
+
+```{r}
+# keeping only the variables of interest
+Wage <- Wage |> 
+  select(wage, age, year, education, health)
+```
+
+
+
+```{r}
+pairs(Wage)
+```
+
+
+
+```{r}
+#| message: false
+GGally::ggpairs(Wage, progress = FALSE)
+
+```
+
+
+
+"Fixing" the data.
+
+
+```{r}
+# write code to remove problematic data:
+
+
+# plot the "cleaned" data again using GGally
+
+```
+
+
+
+
+
+
+## Simple linear regression
+
+### Model 1
+Run a simple linear regression of `wage` on `age`. 
+
+```{r}
+m1 <- lm(wage ~ age, data = Wage)
+summary(m1)
+```
+
+Can you trust the model fitting results? (test assumptions)
+
+```{r}
+plot(m1)
+```
+
+
+
+Is `age` a reliable predictor of `wage`?
+
+> Type your answer here.
+
+
+How well does `age` predict `wage`?
+
+> Type your answer here.
+
+
+How much does `wage` change with each additional year of `age`?
+
+> Type your answer here.
+
+
+What's the wage of a 45 year old person given your model?
+
+```{r}
+predict(m1, newdata = data.frame(age = 45))
+```
+
+
+How to get confidence intervals for that prediction?
+
+`predict()` supports two types of interval via the `interval` argument:
+
+- **`"confidence"`** — interval for the *mean* wage of all 45-year-olds (uncertainty about the regression line).
+- **`"prediction"`** — interval for one *individual* 45-year-old's wage (wider, because it also accounts for individual variation).
+
+```{r}
+new_data <- data.frame(age = 45)
+
+# Confidence interval for the mean response
+predict(m1, newdata = new_data, interval = "confidence")
+
+# Prediction interval for a new individual observation
+predict(m1, newdata = new_data, interval = "prediction")
+```
+
+
+
+
+
+### Model 2
+
+Run a simple linear regression of `wage` on `education`
+
+
+```{r}
+# Write your code here: (call model m2)
+
+```
+
+Can you trust the model fitting results?  (test assumptions)
+
+```{r}
+
+```
+
+
+Is `education` a reliable predictor of `wage`?
+
+> Type your answer here.
+
+
+How well does `education` predict `wage`?
+
+> Type your answer here.
+
+
+How much does `wage` change with `education`?
+
+> Type your answer here.
+
+
+What wage does your model predict for a person that has a "5. Advanced Degree"?
+
+Compute also the confidence interval for the mean of that prediction.
+```{r}
+# Write your code here:
+
+
+```
+
+
+
+
+
+### Comparing models
+
+What predicts `wage` better, `age` or `education`?
+
+> Type your answer here.
+
+
+
+Are these two variables (`age` and `education`) independent from each other?
+
+> Type your answer here
+
+
+```{r}
+# can you compute that correlation?
+
+
+```
+
+
+
+
+## Multiple linear regression
+
+
+Compute the correlation between `age` and `wage`. 
+
+- How strong is that correlation? 
+- Is it significantly different from 0?
+
+
+```{r}
+# Writer your code here:
+
+
+```
+
+
+
+
+### Model 1
+
+
+Run a multiple linear regression of `wage` on `age`, `year`, `education` and `health`. 
+
+
+```{r}
+# write your code here (call the model m3
+
+```
+
+Can you trust the model fitting results?  (test assumptions)
+
+```{r}
+
+```
+
+
+Which variables are reliable predictors of `wage`?
+
+> Type your answer here.
+
+
+How well do those variables predict `wage`?
+
+> Type your answer here.
+
+
+How much does `wage` change with `education`?
+
+> Type your answer here.
+
+```{r}
+# Compute the predicted values
+
+
+# Plot the predicted values
+
+
+```
+
+
+
+
+
+### Model 2
+
+I think that the value of education was higher in the past because fewer people were able to get degrees and perhaps the quality of the education was better in the past than it is now. 
+
+Or perhaps it's the opposite. Online education and digital technologies have perhaps led to better quality education and perhaps low qualification jobs have been replaced by AI or other tech, reducing the wages of those low-qualification jobs. 
+
+How can I test this within a multiple linear regression model?
+
+> Type your answer here.
+
+
+
+Do the analysis: 
+
+```{r}
+# Write your code here (call the model m4):
+
+```
+
+
+You can compare nested models using `anova(simple_model, complex_model)`
+```{r}
+# Write your code here to compare models m3 and m4
+
+```
+
+
+What are your conclusions? 
+
+> Type your answer here.
+
+
+
