@@ -7,4 +7,9 @@ install.packages("rvest")
 install.packages("psych")
 install.packages("reporter")
 
+install.packages("broom")
+install.packages("GGally")
+install.packages("ISLR")
+
+install.packages("performance", dependencies = TRUE)
 
