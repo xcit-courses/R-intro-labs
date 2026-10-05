@@ -5,11 +5,13 @@ install.packages("knitr")
 install.packages("swirl")
 install.packages("rvest")
 install.packages("psych")
-install.packages("reporter")
+install.packages("report")
+install.packages("janitor")
+install.packages("patchwork")
 
 install.packages("broom")
 install.packages("GGally")
 install.packages("ISLR")
 
-install.packages("performance", dependencies = TRUE)
-
+install.packages("performance")
+install.packages("see")
