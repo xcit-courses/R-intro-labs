@@ -14,8 +14,13 @@ __pycache__/
 /admin/
 
 
-/lab_import_data/solutions/
-/lab_ggplot2/git_ignored/
-/lab_ggplot2/solutions/
-/lab_tidy_data/solutions/
-/lab_dplyr/solutions/
+# Instructor material: never published to students
+solutions/
+git_ignored/
+*_solution.qmd
+*_solutions.qmd
+
+# Rendered output
+*_files/
+/lab_*/*.html
+fancy_table.*
