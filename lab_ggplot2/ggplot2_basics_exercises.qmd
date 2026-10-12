@@ -1,14 +1,12 @@
 ---
 title: "Data Visualization Exercises (basics)"
 author: "Pedro"
-output:
-  html_document:
-    code_folding: hide
+format:
+  html:
+    code-fold: true
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-
 library(tidyverse)
 
 # this will load several datasets you will need for the exercises
@@ -18,11 +16,11 @@ load("data/data_viz.Rdata")
 
 ## Instructions
 
-This is a Quarto markdown (qmd) file which combines both text and code. You can render this document by clicking the Knit button in RStudio.
+This is a Quarto markdown (qmd) file which combines both text and code. You can render this document by clicking the Render button in RStudio.
 
 The goal of this Quarto markdown file is to give you the opportunity to test and improve your ggplot2 skills. There are several exercises below and your task is to solve those exercises by creating figures in ggplot2.
 
-The data and the tidyverse will be loaded once you run the code chunk above. Inspect your global environment in Rstudio to see the list of datasets that have been been loaded. Datasets D1 to D9 correspond to the scenarios we've seen during the previous class.
+The data and the tidyverse will be loaded once you run the code chunk above. Inspect your global environment in RStudio to see the list of datasets that have been loaded. Datasets D1 to D9 correspond to the scenarios we've seen during the previous class.
 
 Note that there are sometimes multiple formats for the data (e.g., D1, D1b for scenario #1); check out which one you need to make a particular figure.
 
@@ -289,13 +287,17 @@ The code below transforms the data to make it easier to reproduce the figure fro
 
 ```{r}
 library(tidyverse)
+
+# age_group is the variable from exercise 4.3; it is created again here so that this chunk always runs
+D4$age_group <- ifelse(D4$age < 30, "young", "old")
+
 D4_summary <- D4 |> 
-  group_by(gender, age_group) |> 
   summarize(IQ_gain = mean(effect),
             n = n(),
             IQ_gain_se = sd(effect)/sqrt(n),
             IQ_gain_lower = IQ_gain - 1.96*IQ_gain_se, 
-            IQ_gain_upper = IQ_gain + 1.96*IQ_gain_se) |> 
+            IQ_gain_upper = IQ_gain + 1.96*IQ_gain_se,
+            .by = c(gender, age_group)) |> 
   unite(gender, age_group, col = "combined_group", sep = "_", remove = FALSE)
 
 head(D4_summary)
@@ -305,11 +307,11 @@ Now that we have the summary stats, we can plot those:
 
 ```{r}
 ggplot(D4_summary, 
-       aes(combined_group, IQ_gain, fill = gender, alpha = age_group)) +
+       aes(IQ_gain, combined_group, fill = gender, alpha = age_group)) +
   geom_col(position = "dodge", col = "black") +
-  geom_errorbar(aes(ymin = IQ_gain_lower, ymax = IQ_gain_upper), col = "black", alpha = 1, width = 0, linewidth = 2) +
+  geom_errorbar(aes(xmin = IQ_gain_lower, xmax = IQ_gain_upper), col = "black", alpha = 1, width = 0, linewidth = 2) +
+  scale_alpha_manual(values = c(old = 0.1, young = 1)) +
   theme_bw() + 
-  coord_flip() +
   guides(fill = "none")
 
 ```
@@ -330,7 +332,7 @@ Look at the code that generates the figure above. There is a command that remove
 
 ## Scenario #5
 
-A company claims their pill increases IQ, and more so for some university student than others. The company sold pills to 5 different universities. The number of students and their average IQ is different across each University. From each student you know the age, gender, grades before the pill, grades after the pill, nationality, IQ before the pill, IQ after the pill and self-rating of well-being.
+A company claims their pill increases IQ, and more so for some university students than others. The company sold pills to 5 different universities. The number of students and their average IQ is different across each University. From each student you know the age, gender, grades before the pill, grades after the pill, nationality, IQ before the pill, IQ after the pill and self-rating of well-being.
 
 ### Exercise 5.1
 
