@@ -5,7 +5,7 @@ author: "Pedro Cardoso-Leite"
 
 ## Switch or Stay?
 
-Imagine the following game. There are three closed doors. Behind one of the doors is sports car; behind each of the remaining two is a goat.
+Imagine the following game. There are three closed doors. Behind one of the doors is a sports car; behind each of the remaining two is a goat.
 
 In this game you get to choose a door (at random) and you win whatever is behind that closed door (i.e., a car or a goat).
 
@@ -38,7 +38,6 @@ There are 3 doors; let's label them. Create a variable called `doors` that has t
 
 # --- your code ---
 # Write your code here!
-print("hello")
 
 ```
 
@@ -73,13 +72,13 @@ Now it's the turn to implement a player.
 
 
 # the code below prints the name of the door chosen by the player.
-print(paste0("The player choses door: ", player_choice))
+print(paste0("The player chooses door: ", player_choice))
 
 ```
 
 #### Step 1.c: the game host opens a losing door
 
-Back to the game host The game host needs to pick a door among the two doors not chosen by the player and that does not contain the car.
+Back to the game host. The game host needs to pick a door among the two doors not chosen by the player and that does not contain the car.
 
 ```{r}
 # TODO: define a vector called `remaining_doors` that contains the names of all the doors that contain goats AND were not selected by the player. Use the function `setdiff`.
@@ -138,7 +137,7 @@ Given the results of the above game(s), did you change your opinion?
 
 > Yes/No
 
-### Step 2: Implementing N round of the game
+### Step 2: Implementing N rounds of the game
 
 The code you wrote so far runs only 1 round of the game and does not save the results of the game. In this exercise you will write code to run many rounds of the game and record data of each round in a table.
 
@@ -189,7 +188,7 @@ prop.table(table(Results$winning_strategy))
 
 ```
 
-From the stimulation you just ran, what percentage of games would you have won with the "stay" strategy?
+From the simulation you just ran, what percentage of games would you have won with the "stay" strategy?
 
 > I would have won ... % of the time.
 
@@ -201,7 +200,12 @@ The code above can be improved and be made shorter, faster and more flexible. Th
 # TODO: write a function that takes as input a variable called `doors` which is a vector with the labels of the doors and outputs a string "stay" or "switch" depending on which strategy won. This function is a "wrapper" around the code you wrote to simulate 1 round of the game. The code below shows you the basic structure of the function.
 
 # --- your code ---
-
+run_game <- function(doors) {
+  
+  # paste and adapt your code for 1 round of the game (steps 1.a to 1.d)
+  
+  return(winning_strategy)
+}
 
 # run the function
 # run_game(doors = c("A", "B", "C", "D"))
@@ -223,13 +227,17 @@ tic <- Sys.time()
 
 # --- your code ---
 
+
+toc <- Sys.time()
+replicate_duration <- toc - tic
+
 ```
 
-The for loop version took `r for_loop_duration`; the replicate version took `r replicate_duration`
+The for loop version took `r format(for_loop_duration)`; the replicate version took `r format(replicate_duration)`
 
 The advantage of writing a function is that now your code is cleaner and easier to read and reuse and now you can also use the function in a more flexible way.
 
-For example, you can now ask questions like: What happens if there are more doors to choose from? Which strategy is better? What happens if there are less doors to chose from?
+For example, you can now ask questions like: What happens if there are more doors to choose from? Which strategy is better? What happens if there are fewer doors to choose from?
 
 ```{r}
 # TODO: using functions you wrote earlier, evaluate the probability of winning with the switch strategy when the game involves 4 or 5 doors (instead of the 3).
@@ -255,7 +263,7 @@ Sys.sleep(1) # wait for 1 second
 toc <- Sys.time() # get the exact current time again
 elapsed_time <- toc - tic # compute how much time has elapsed
 
-print(paste0("running this code took: ", elapsed_time))
+print(paste0("running this code took: ", format(elapsed_time)))
 ```
 
 Using the code just presented, evaluate which of the two versions of the simulations run faster, the one using the `for loop` or the one using `replicate()`. Make sure that both versions execute the same number of runs.
@@ -263,7 +271,7 @@ Using the code just presented, evaluate which of the two versions of the simulat
 ```{r}
 # TODO: rewrite your for-loop and replicate code chunks so that they measure how much time they take to run. Store each measure in its own variable, respectively for_loop_duration and replicate_duration
 
-# The code chunks presented in the solution above (with_for_loop and with_replicate) have already been rewritten to measure how much time each of them took.
+# Check that the with_for_loop and with_replicate chunks above store their run times in for_loop_duration and replicate_duration, and that both use the same sim_n.
 
 data.frame(for_loop_duration, replicate_duration)
 
@@ -271,4 +279,8 @@ data.frame(for_loop_duration, replicate_duration)
 
 Which version is faster? How much faster?
 
-> The faster version is *with replicate* and it is *\~10* times faster.
+> The faster version is ... and it is ... times faster.
+
+Why is it faster? Is `replicate()` itself faster than a `for` loop, or does the `for` loop version do something extra in every round? (Hint: look at what happens to `Results` with `rbind()` in each round.)
+
+> It is faster because ...
