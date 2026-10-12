@@ -10,7 +10,7 @@ editor: source
 library(tidyverse)
 ```
 
-# Tidyng data
+# Tidying data
 
 ```{r}
 
@@ -27,7 +27,7 @@ dset
 
 
 ```{r}
-# compute the mean of the vrialble called "first column"
+# compute the mean of the variable called "first column"
 
 
 ```
@@ -35,7 +35,7 @@ dset
 
 
 ```{r}
-# compute the median of the vrialble called "$Salary$"
+# compute the median of the variable called "$Salary$"
 
 
 ```
@@ -51,7 +51,7 @@ dset
 
 
 
-What do you thinnk about those column names?
+What do you think about those column names?
 
 How can you change them?
 
@@ -59,7 +59,7 @@ How can you change them?
 
 
 
-## How to chose good variable names (column names)
+## How to choose good variable names (column names)
 
 For a long version see:\
 
@@ -71,7 +71,7 @@ For a short version:
 
 -   use snake_case ("math_grades" MathGrade Mathgrades "Math Grades")
 -   use variable names that are meaningful (i.e., stand on their own) "population" "population_count" "pop" "qst_1"
--   don't use abreviations (population_count, pop_n, )
+-   don't use abbreviations (population_count, pop_n, )
 -   you must be consistent;
 
 

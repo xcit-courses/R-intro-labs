@@ -4,7 +4,7 @@ format: html
 editor: source
 ---
 
-# Tidyng data
+# Tidying data
 
 
 Tidying data is a critical step in making a dataset ready for use. 
@@ -12,7 +12,7 @@ Tidying data is a critical step in making a dataset ready for use.
 By tidying data I mean changing the way the data is packaged to make it easier/more intuitive to use **without** changing the informational content of the data. Removing outliers or z-transforming certain variables are operations that remove information from the data while renaming columns and removing duplicate entries do not affect the informational content of the data.
 
 
-Tidying data  can be a complex and time consuming process, often requirering multiple packages. The following set of exercises focus on diagnosing key issues of messy data using real datasets. Your task is to review those datasets using the provided checklist.
+Tidying data  can be a complex and time consuming process, often requiring multiple packages. The following set of exercises focus on diagnosing key issues of messy data using real datasets. Your task is to review those datasets using the provided checklist.
 
 
 
@@ -34,21 +34,21 @@ Note that some additional steps would be necessary before sharing the data publi
 
 1.  [ ] Do you have the right number of tables?
 
-        - what is the observational unit of each table?
-        - should a table be split into multiple tables?
-        - should multiple tables be grouped into one?
+    - what is the observational unit of each table?
+    - should a table be split into multiple tables?
+    - should multiple tables be grouped into one?
 
 2.  [ ] Do your tables have the tidy data shape (e.g., one row per observation)? 
 
-        - are the column names simple? 
-        - are the values simple (e.g., a number)
+    - are the column names simple? 
+    - are the values simple (e.g., a number)
         
 3.  [ ] Are the columns well named? Do you know what they mean?
 
-        - valid variable names
-        - explicit
-        - unambiguous
-        - consistent with and across tables
+    - valid variable names
+    - explicit
+    - unambiguous
+    - consistent with and across tables
         
         
 4. [ ] Are the values in each column appropriate? Do you know what they mean?
@@ -69,9 +69,9 @@ Note that some additional steps would be necessary before sharing the data publi
 
 12. [ ] Does the data contain personal information? 
 
-        - don't share other people's personal data without their consent
-        - don't become an accomplice
-        - if you see something, say something: if you find unintentionnaly shared personal data, inform the data providers.
+    - don't share other people's personal data without their consent
+    - don't become an accomplice
+    - if you see something, say something: if you find unintentionally shared personal data, inform the data providers.
 
 
 
@@ -129,7 +129,7 @@ Pay attention to how the data and code are organized. What do you like? What do 
 
 
 
-#### 8) Psychological and Physiological Determinants of Stress and Their Impact on Academic Performance"
+#### 8) Psychological and Physiological Determinants of Stress and Their Impact on Academic Performance
 
 [https://osf.io/2mr5w/overview](https://osf.io/2mr5w/overview)
 

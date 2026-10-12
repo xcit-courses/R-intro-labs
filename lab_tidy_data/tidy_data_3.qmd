@@ -31,7 +31,7 @@ rating_data
 Create a bar plot showing the frequency of each choice. 
 
 ```{r}
-ggplot(rating_data, aes(choice, freq)) + geom_bar(stat = 'identity') + coord_flip()
+ggplot(rating_data, aes(freq, choice)) + geom_bar(stat = 'identity')
 ```
 
 What's the issue?
@@ -90,7 +90,7 @@ What can you say about this figure?
 
 ## How to encode dates?
 
-Have a look at the [lubridate sheatsheet](https://rstudio.github.io/cheatsheets/lubridate.pdf)
+Have a look at the [lubridate cheatsheet](https://rstudio.github.io/cheatsheets/lubridate.pdf)
 
 
 
