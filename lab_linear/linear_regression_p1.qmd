@@ -59,7 +59,7 @@ Here we are interested only in the following columns:
 
 
 
-**Solution:**
+**Hint:**
 
 A quick way to have a look at the data is to use pairs plots (see for example: [https://jtr13.github.io/cc20/customized-plot-matrix-pairs-and-ggpairs.html](https://jtr13.github.io/cc20/customized-plot-matrix-pairs-and-ggpairs.html))
 
@@ -256,7 +256,7 @@ Run a multiple linear regression of `wage` on `age`, `year`, `education` and `he
 
 
 ```{r}
-# write your code here (call the model m3
+# write your code here (call the model m3)
 
 ```
 
