@@ -19,14 +19,14 @@ In all the examples below I will use the `Employee satisfaction and Salary (ESS)
 ```{r}
 library(tidyverse)
 ESS <- read_csv('datasets/ESS/HR_comma_sep.csv')
-knitr::kable(ESS)
+knitr::kable(head(ESS))
 ```
 
 ## 0. Inspect
 
 A first thing that one should always do with a dataset is to get a sense of how big or small that data is.
 
-One can ask onself for instance, does this data table have the expected number of rows and columns.
+One can ask oneself for instance, does this data table have the expected number of rows and columns.
 
 How can you assess the "size" of a data.frame?
 
@@ -37,7 +37,7 @@ How can you assess the "size" of a data.frame?
 
 ## 1. See the content of a data.frame
 
-There are multiple ways to "get a look" at the content of a data.frame; here are few:
+There are multiple ways to "get a look" at the content of a data.frame; here are a few:
 
 -   View(df)
 -   head(df)
@@ -59,12 +59,12 @@ When would you use each of them?
 
 A key operation on tables is to `select` specific columns. For example, perhaps your data.frame has many more columns than you need and you would like to save a version of your data that only contains the columns you want.
 
-Or perhaps you to select a particular column (e.g., `satisifaction_level`) to plot a histogram of that variable.
+Or perhaps you want to select a particular column (e.g., `satisfaction_level`) to plot a histogram of that variable.
 
-In R there are several ways you can select one or multiple columns. In base R you can select columns using square brakets \[\]
+In R there are several ways you can select one or multiple columns. In base R you can select columns using square brackets \[\]
 
 -   by name (or vector of names)
--   by index/position (or vector of indecis)
+-   by index/position (or vector of indices)
 
 ```{r}
 #| eval: false
@@ -93,7 +93,7 @@ Which of these methods is better?
 
 ## 3. Select rows (aka "filtering")
 
-It is often useful for specific analysis to keep only certain cases. For example, there might be a column called age and we are only interested in peole aged 50 and older. Or there is a columns called time_spend_company and we are only interested in those people who have been at a company for more than 5 years.
+It is often useful for specific analysis to keep only certain cases. For example, there might be a column called age and we are only interested in people aged 50 and older. Or there is a column called time_spend_company and we are only interested in those people who have been at a company for more than 5 years.
 
 Again R offers various ways to filter rows:
 
@@ -114,7 +114,7 @@ ESS[ESS$salary == "high", ]
 
 The next common operation we'll see is how to modify or create new columns in a data.frame.
 
-For example, perhaps you have a column called `satisfaction_level` that is expressed in Euros and you want to create a new column called `satisfaction_level_standardized` that subtracts the mean of salary and divides by its standard deviation.
+For example, perhaps you have a column called `satisfaction_level` (a rating between 0 and 1) and you want to create a new column called `satisfaction_level_standardized` that subtracts the mean of `satisfaction_level` and divides by its standard deviation.
 
 Or you have columns called score_a and score_b and you want to add them up in a column called score_total.
 
@@ -127,14 +127,14 @@ ESS$satisfaction_level_standardized <- (ESS$satisfaction_level - mean(ESS$satisf
 
 ## 5. Save a data.frame
 
-Finally, at some point you may want to export your data as a data file that may want to share with others.
+Finally, at some point you may want to export your data as a data file that you may want to share with others.
 
 As with importing, depending on the data file format you want you will need to use different methods.
 
-A common file format for data is "CSV". You can export your data using `write.csv()` for example.
+A common file format for data is "CSV". You can export your data using `write_csv()` from the readr package (part of the tidyverse), for example.
 
 ```{r  eval=FALSE, include=TRUE, echo=TRUE}
 
-write.csv()
+write_csv()
 
 ```
