@@ -10,11 +10,18 @@ This document offers various exercises to help you train your dplyr skills.
 
 Make sure to read this book chapter: https://r4ds.hadley.nz/data-transform
 
-It can be very helpful to have the cheatsheet at hand:
+It can be very helpful to have the cheatsheet at hand: https://rstudio.github.io/cheatsheets/data-transformation.pdf
 
 ## Import data
 
 The data to be used for this set of exercises is `data/school_grades.csv`.
+
+```{r}
+library(tidyverse)
+
+# TODO: import data/school_grades.csv
+
+```
 
 ## Exercises
 
@@ -121,25 +128,25 @@ The data to be used for this set of exercises is `data/school_grades.csv`.
 ```
 
 ```{r}
-# "are there any duplicated values in the dataset? If so, how many?
+# "are there any duplicated values in the dataset? If so, how many?"
 
 
 ```
 
 ```{r}
-# "please remove any duplicated values and update all the previous code accordingly...
+# "please remove any duplicated values and update all the previous code accordingly..."
 
 
 ```
 
 ```{r}
-# "There's a column called NumberOfTVs at the very end of the table. I don't like that label; can you change it...
+# "There's a column called NumberOfTVs at the very end of the table. I don't like that label; can you change it..."
 
 
 ```
 
 ```{r}
-# "...also that column should not be at the very end but rather after the 'is_positive' columns. Can you please change that?"
+# "...also that column should not be at the very end but rather after the 'is_positive' column. Can you please change that?"
 
 
 ```
@@ -151,7 +158,7 @@ The data to be used for this set of exercises is `data/school_grades.csv`.
 ```
 
 ```{r}
-# "compute a grade for each student that is the sum of all the scores across study domains. Now give each person a rank (from best=1 to worst=last one).
+# "compute a grade for each student that is the sum of all the scores across study domains. Now give each person a rank (from best=1 to worst=last one)."
 
 
 ```

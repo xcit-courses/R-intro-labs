@@ -1,3 +1,6 @@
+# Creates the three CSV files in data/.
+# Run this script with the lab folder (lab_dplyr) as the working directory,
+# e.g. by opening lab_dplyr.Rproj.
 
 library(tidyverse)
 
@@ -68,6 +71,6 @@ library_visitors <- df |>
 
 
 
-write_csv(df, file = 'school_grades.csv')
-write_csv(cheaters, file = 'cheaters.csv')
-write_csv(library_visitors, file = 'library_visitors.csv')
+write_csv(df, file = 'data/school_grades.csv')
+write_csv(cheaters, file = 'data/cheaters.csv')
+write_csv(library_visitors, file = 'data/library_visitors.csv')

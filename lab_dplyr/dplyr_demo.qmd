@@ -110,14 +110,14 @@ nonhuman_data <- starwars |>
 human_summary <- human_data |> 
     summarize(height_mean = mean(height, na.rm = TRUE), 
             height_sd = sd(height, na.rm = TRUE),
-            height_var = var(heigh, na.rm = TRUE),
+            height_var = var(height, na.rm = TRUE),
             mass_median = median(mass, na.rm = TRUE), 
             n = n())
 
 nonhuman_summary <- nonhuman_data |> 
     summarize(height_mean = mean(height, na.rm = TRUE), 
             height_sd = sd(height, na.rm = TRUE),
-            height_var = var(heigh, na.rm = TRUE),
+            height_var = var(height, na.rm = TRUE),
             mass_median = median(mass, na.rm = TRUE), 
             n = n())
 
