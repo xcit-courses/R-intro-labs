@@ -37,22 +37,10 @@ compute_bmi <- function(height_in_m, weight_in_kg, print_text=FALSE){
   # if (bmi < 18.5){
   #     bmi_category <- "Underweight"
   # } 
-  # if ((bmi >= 18.5) & (bmi <= 24.9)){
+  # if ((bmi >= 18.5) & (bmi < 25)){
   #   bmi_category <- "Healthy"
   # }    
-  # if ((bmi >= 25.0) & (bmi <= 29.9)){
-  #   bmi_category <- "Overweight"
-  # }    
-  # if (bmi >= 30){
-  #   bmi_category <- "Obesity"
-  # }      # # Option 2: non-nested if-else statements
-  # if (bmi < 18.5){
-  #     bmi_category <- "Underweight"
-  # } 
-  # if ((bmi >= 18.5) & (bmi <= 24.9)){
-  #   bmi_category <- "Healthy"
-  # }    
-  # if ((bmi >= 25.0) & (bmi <= 29.9)){
+  # if ((bmi >= 25) & (bmi < 30)){
   #   bmi_category <- "Overweight"
   # }    
   # if (bmi >= 30){
@@ -79,23 +67,25 @@ if (print_text){
     paste0(
       "Your height is ", height_in_m, "m and your weight is ", weight_in_kg,
       "kg.\nYour BMI is ", round(bmi, 1), ".\n", 
-      "Your BMI categroy is ", bmi_category, '.\n\n'
+      "Your BMI category is ", bmi_category, '.\n\n'
     )
   )
   
 }
+  
+  return(bmi)
 }
 
 ## testing my function with specific inputs
-# compute_bmi(height = 1.80, weight = 50)
-# compute_bmi(height = 1.80, weight = 60)
-# compute_bmi(height = 1.80, weight = 70)
-# compute_bmi(height = 1.80, weight = 80)
-# compute_bmi(height = 1.80, weight = 90)
-# compute_bmi(height = 1.80, weight = 100)
-# compute_bmi(height = 1.80, weight = 110)
-# compute_bmi(height = 1.80, weight = 150)
+# compute_bmi(height_in_m = 1.80, weight_in_kg = 50)
+# compute_bmi(height_in_m = 1.80, weight_in_kg = 60)
+# compute_bmi(height_in_m = 1.80, weight_in_kg = 70)
+# compute_bmi(height_in_m = 1.80, weight_in_kg = 80)
+# compute_bmi(height_in_m = 1.80, weight_in_kg = 90)
+# compute_bmi(height_in_m = 1.80, weight_in_kg = 100)
+# compute_bmi(height_in_m = 1.80, weight_in_kg = 110)
+# compute_bmi(height_in_m = 1.80, weight_in_kg = 150)
 
-compute_bmi(height = 1.80, 150)
+compute_bmi(height_in_m = 1.80, weight_in_kg = 150, print_text = TRUE)
 
 
